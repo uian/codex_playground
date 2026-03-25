@@ -1,0 +1,76 @@
+# Fixed fields for the intake form
+fixed_fields:
+  归口: 国资处
+  使用方向: 行政
+
+# Fields that should be left for manual selection/input
+manual_fields:
+  - 使用人
+  - 资产分类
+  - 国标分类
+
+# Amount rules
+amount_rules:
+  source: 原价数
+  source_fields:
+    - 金额数值
+    - 税额数值
+  fallback_source_fields:
+    - 单价
+    - 总价
+  target_fields:
+    - 单价(元)
+    - 原值/总金额
+    - 经费项目1
+
+# Fixed asset rule
+fixed_asset_rule:
+  enabled: true
+  unit_threshold: 1000
+  batch_unit_threshold: 500
+  batch_total_threshold: 5000
+
+# Grouping rules for building one intake per item
+# Key = 名称 + 型号
+group_by:
+  - 名称
+  - 型号
+
+# Field mapping from OCR/table columns to form fields
+# Update as needed for different templates
+field_map:
+  名称: 资产名称
+  型号: 型号
+  规格: 规格
+  数量: 数量
+  单价: 单价(元)
+  总价: 原值/总金额
+  品牌: 品牌
+  供应商: 供应商
+  发票号: 发票号
+  取得日期: 取得日期
+
+# Site/runtime configuration for browser automation
+site:
+  url: "http://zcgl.jse.edu.cn/workstand/workstand.jsf" # Asset system home page
+  browser_mode: "cdp" # persistent = dedicated profile, cdp = attach to an existing Chrome debug session
+  startup_action: "preserve" # goto = open site.url, preserve = keep current tab/session, new_tab = create a tab and optionally open site.url
+  user_data_dir: "/Users/uian/Documents/Playground/asset_entry/tmp/chrome_profile"
+  cdp_url: "http://127.0.0.1:9222"
+  wait_for_ready_selector: "" # Optional selector to wait for form readiness
+  post_login_click_labels:
+    - 固定资产入库
+
+# Optional label-to-selector overrides when label matching is unreliable
+selectors: {}
+
+# Verified direct-fill field IDs for the current YZU stock-in form
+precise_field_ids:
+  资产名称: RF_BAA02
+  型号: RF_BAA041
+  规格: RF_BAA04
+  数量: RF_BAA09
+  原值/总金额: RF_BAA10
+  发票号: RF_BAA33
+  取得日期: RF_BAA21
+  供应商: RF_BAA31

@@ -1,0 +1,7 @@
+interface:
+  display_name: "Asset Intake Agent"
+  short_description: "识别清单并驱动固定资产入库填报流程"
+  default_prompt: "Use $asset-intake-agent to extract project files, build intake rows, and fill the asset-entry form up to manual submit."
+
+policy:
+  allow_implicit_invocation: true
